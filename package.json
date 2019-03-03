@@ -1,0 +1,40 @@
+{
+  "name": "tpl-admin-vue",
+  "version": "1.0.0",
+  "description": "",
+  "author": "ricopter@qq.com",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "tm start",
+    "build": "tm build",
+    "build:union": "tm build -e union",
+    "build:test": "tm build -e test"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "element-ui": "2.4.11",
+    "js-cookie": "^2.2.0",
+    "normalize.css": "7.0.0",
+    "nprogress": "0.2.0",
+    "path-to-regexp": "^3.0.0",
+    "qs": "^6.6.0",
+    "vue": "2.5.17",
+    "vue-router": "3.0.1",
+    "vuex": "3.0.1"
+  },
+  "devDependencies": {
+    "node-sass": "^4.7.2",
+    "sass-loader": "7.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/note520/tpl-admin-vue.git"
+  },
+  "license": "ISC",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

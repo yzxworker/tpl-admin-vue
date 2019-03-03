@@ -1,0 +1,11 @@
+[
+  {
+    "method": "get",
+    "url": "/users/:id*",
+    "response": {
+      "id": 1,
+      "name": "tom",
+      "level": 3
+    }
+  }
+]
