@@ -71,19 +71,22 @@ export default {
     },
     moveToCurrentTag() {
       const tags = this.$refs.tag
-      console.log('==moveToCurrentTag==', tags)
-      this.$nextTick(() => {
-        for (const tag of tags) {
-          if (tag.to.path === this.$route.path) {
-            this.$refs.scrollPane.moveToTarget(tag)
-            // when query is different then update
-            if (tag.to.fullPath !== this.$route.fullPath) {
-              this.$store.dispatch('updateVisitedView', this.$route)
+      if(tags){
+        this.$nextTick(() => {
+          for (const tag of tags) {
+            if (tag.to.path === this.$route.path) {
+              this.$refs.scrollPane.moveToTarget(tag)
+              // when query is different then update
+              if (tag.to.fullPath !== this.$route.fullPath) {
+                this.$store.dispatch('updateVisitedView', this.$route)
+              }
+              break
             }
-            break
           }
-        }
-      })
+        })
+      }else {
+        console.log('=tags error!=')
+      }
     },
     refreshSelectedTag(view) {
       this.$store.dispatch('delCachedView', view).then(() => {

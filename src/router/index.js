@@ -45,22 +45,22 @@ export const constantRouterMap = [
   {
     path: '',
     component: Layout,
-    redirect: '/demo'
+    redirect: '/dashboard'
   },
-  // 首页面板
+  // 带左侧导航面板
   {
     path: '/dashboard',
     component: Layout,
-    redirect: 'dashboard',
     children: [
       {
-        path: 'dashboard',
+        path: 'home',
         component: dashboardPage,
         name: 'Dashboard',
         meta: { title: '首页', icon: 'dashboard', noCache: true }
       }
     ]
   },
+  // 不带侧边导航配置
   {
     path:'/demo',
     component:DemoPage,
