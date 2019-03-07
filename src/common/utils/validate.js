@@ -26,7 +26,37 @@ export function validateUpperCase(str) {
 }
 
 /* 大小写字母*/
-export function validatAlphabets(str) {
+export function validateAlphabets(str) {
   const reg = /^[A-Za-z]+$/
   return reg.test(str)
+}
+
+/**
+ * 特殊字符串
+ * @param str
+ * @returns {boolean}
+ */
+export function validateSpecial(str) {
+  const reg = /[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘’，。、,Null,null,&nbsp]/im;
+  return reg.test(str)
+}
+
+/**
+ * 验证数字
+ * @param val
+ * @returns {boolean}
+ */
+export function validateNumber(val) {
+  const reg = /^\d+$/
+  return reg.test(val)
+}
+
+/**
+ * 验证是否为图片
+ * @param val
+ * @returns {boolean}
+ */
+export function validateImg(val) {
+  const reg = /(.jpg|.jpeg|.gif|.png|.bmp)$/
+  return reg.test(val.toLowerCase())
 }

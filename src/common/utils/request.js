@@ -1,60 +1,67 @@
 import axios from 'axios'
 import { Message } from 'element-ui' // MessageBox
+import Qs from 'qs'
 // import store from '../../store'
 // import { getToken } from '@/common/utils/auth'
 import { API_BASE_URL } from '../../config'
 
-// 创建axios实例
-const service = axios.create({
-  baseURL: API_BASE_URL, // data 的 base_url
-  timeout: 5000, // 请求超时时间
-  withCredentials: true
-})
-// request拦截器
-service.interceptors.request.use(
+// 全局的 axios 默认值1
+axios.defaults.baseURL = API_BASE_URL
+axios.defaults.timeout = 20000 // 20s 防止上传api超时
+axios.defaults.withCredentials = true
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
+
+let LOADING
+/**
+ * 拦截请求数据
+ */
+axios.interceptors.request.use(
   config => {
     // if (store.getters.token) {
     //   environment.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     // }
+    if (!LOADING) {
+      LOADING = Loading.service({
+        fullscreen: true,
+        text: '拼命加载中...',
+        background: 'rgba(255,255,255,0)'
+      })
+    }
+
+    // 超时处理
+    setTimeout(() => {
+      LOADING && LOADING.close()
+      LOADING = null
+    }, 15000)
+
     return config
   },
   error => {
-    // Do something with request error
+    LOADING && LOADING.close()
+    LOADING = null
     console.log(error) // for debug
     Promise.reject(error)
   }
-)
+);
 
 // response 拦截器
-service.interceptors.response.use(
+axios.interceptors.response.use(
   response => {
+    LOADING && LOADING.close()
+    LOADING = null
     /**
-     * code为非20000是抛错 可结合自己业务进行修改
+     * code为非success是抛错 todo结合自己业务进行修改
      */
     const res = response.data
+    const resStatus = response.status
     if (res.rspCode !== 'success') {
       Message({
-        message: res.rspDesc,
+        message: res.rspDesc || res.message || '出错了',
         type: 'error',
         duration: 5 * 1000
       })
-      // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
-      // todo 登陆过期判断
-      // if (res.rspCode === 50008 || res.rspCode === 50012 || res.rspCode === 50014) {
-      //   MessageBox.confirm(
-      //     '你已被登出，可以取消继续留在该页面，或者重新登录',
-      //     '确定登出',
-      //     {
-      //       confirmButtonText: '重新登录',
-      //       cancelButtonText: '取消',
-      //       type: 'warning'
-      //     }
-      //   ).then(() => {
-      //     store.dispatch('FedLogOut').then(() => {
-      //       location.reload() // 为了重新实例化vue-router对象 避免bug
-      //     })
-      //   })
-      // }
+      //todo 登陆过期判断
       return Promise.reject('error')
     } else {
       return response.data
@@ -71,4 +78,15 @@ service.interceptors.response.use(
   }
 )
 
-export default service
+/**
+ * 自定义 post方法
+ * @param url
+ * @param params
+ * @param opts
+ * @returns {AxiosPromise<any>}
+ */
+axios.postApi = function(url, params, opts = {}) {
+  return axios.post(url, Qs.stringify(params), ...opts)
+};
+
+export default axios

@@ -10,28 +10,35 @@ const default_config = {
   },
   // 开发联调
   union: {
-    // urlPrefix: 'http://172.16.11.76:8238',
-    // uploadUrl: 'http://172.16.11.76:8238/uploadImgs'
-    urlPrefix: 'http://areaboss.dev2.xsyxsc.cn/',
-    uploadUrl: 'http://areaboss.dev2.xsyxsc.cn/uploadImgs'
+    urlPrefix: '',
+    uploadUrl: ''
+  },
+  // 测试
+  test: {
+    "urlPrefix": "",
+    "uploadUrl": ""
   },
   // 正式部署
   prod: {
-    urlPrefix: 'http://172.16.11.76:8238', // api请求前缀
-    uploadUrl: 'http://172.16.11.76:8238/uploadImgs' // 上传地址
+    urlPrefix: '', // api请求前缀
+    uploadUrl: '' // 上传地址
   }
-}
+};
 // api 请求地址
 let API_BASE_URL
 switch (process.env.APP_ENV) {
+
   case 'development':
     INJECTION_CONFIG = Object.assign({}, default_config.dev)
     API_BASE_URL = INJECTION_CONFIG.urlPrefix
     break
 
   case 'union':
-    INJECTION_CONFIG = Object.assign({}, default_config.union)
-    API_BASE_URL = INJECTION_CONFIG.urlPrefix
+    INJECTION_CONFIG = Object.assign({}, default_config.union, g_config)
+    break
+
+  case 'test':
+    INJECTION_CONFIG = Object.assign({}, default_config.test, g_config)
     break
 
   case 'production':
@@ -40,7 +47,8 @@ switch (process.env.APP_ENV) {
     break
 
   default:
-    API_BASE_URL = 'http://localhost:5000/'
+    INJECTION_CONFIG = Object.assign({}, default_config.prod, g_config)
+    console.warn('process.env.APP_ENV error!')
 }
 // 上传配置 uploadImgs
 const UPLOAD_CONFIG = {
@@ -50,7 +58,8 @@ const UPLOAD_CONFIG = {
     systemFootNavImg: 'systemFootNavImg'
   }
 }
-console.log(`injection_config:`, INJECTION_CONFIG)
+console.log(`injection_config:`, INJECTION_CONFIG);
+console.log(process.env);
 export {
   API_BASE_URL,
   UPLOAD_CONFIG
