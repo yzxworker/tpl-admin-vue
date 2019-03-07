@@ -58,3 +58,6 @@ npm run build
 
 #### 注意修改地方
 - /common/utils/request.js 每个项目对应的api请求状态码不相同，注意修改里面的拦截器
+
+#### 模板参考文档
+- [路由文档](https://panjiachen.github.io/vue-element-admin-site/zh/guide/essentials/router-and-nav.html#%E9%85%8D%E7%BD%AE%E9%A1%B9)
