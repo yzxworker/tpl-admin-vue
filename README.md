@@ -2,10 +2,7 @@
 
 ## 目录结构
 ```
-├─build                              // 构建相关
-├─environment                             // webpack环境配置相关
 ├─mock                               // 本地模拟数据服务
-├─output                             // 打包后的zip输出目录 
 ├─src                                // 源代码
 │  ├─api                             // 所有请求
 │  ├─assets                          // 主题 字体等静态资源
