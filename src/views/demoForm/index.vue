@@ -1,13 +1,14 @@
 <template>
-  <div class="page-container demo-container">
-    <h1>无菜单DEMO</h1>
+  <div class="page-container demoForm-container">
+    <h1>常用页面表单演示</h1>
+
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'Demo',
+  name: 'demoForm',
   components: {
   },
   filters: {
@@ -25,8 +26,8 @@ export default {
   }
 }
 </script>
-<style rel="stylesheet/scss" lang="scss" scoped>
-  .demo-container {
-
+<style rel="stylesheet/scss" lang="scss">
+  .demoForm-container {
+    margin: 30px;
   }
 </style>

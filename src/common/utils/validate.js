@@ -37,7 +37,8 @@ export function validateAlphabets(str) {
  * @returns {boolean}
  */
 export function validateSpecial(str) {
-  const reg = /[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘’，。、,Null,null,&nbsp]/im;
+  // const reg = /[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘’，。、,Null,null,&nbsp]/im;
+  const reg = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
   return reg.test(str)
 }
 
@@ -59,4 +60,22 @@ export function validateNumber(val) {
 export function validateImg(val) {
   const reg = /(.jpg|.jpeg|.gif|.png|.bmp)$/
   return reg.test(val.toLowerCase())
+}
+
+/**
+ * 验证中文
+ */
+export function validateChinese(val) {
+  const reg = /[\u4e00-\u9fa5]/im
+  return reg.test(val)
+}
+
+/**
+ * 验证身份证ID
+ * @param val
+ * @returns {boolean}
+ */
+export function validateChineseID(val) {
+  const reg = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/
+  return reg.test(val)
 }

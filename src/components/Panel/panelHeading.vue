@@ -1,5 +1,5 @@
 <template>
-  <div class="panel-heading panel-heading-default">
+  <div class="panel-heading" :class="panelClass">
     <SvgIcon v-if="iconClass" :class-name="iconClass"/>
     {{ title }}
     <div class="pull-right">
@@ -22,6 +22,10 @@ export default {
     iconClass: {
       type: String,
       default: ''
+    },
+    panelClass:{
+      type: String,
+      default: 'panel-heading-default'
     }
   },
   data() {
@@ -34,17 +38,17 @@ export default {
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss">
   .panel-heading {
     padding: 8px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
     .pull-right {
       float: right;
     }
     &.panel-heading-default{
-      color: #999;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      color: #666;
       font-size: 14px;
       background-color: #f5f5f5;
     }

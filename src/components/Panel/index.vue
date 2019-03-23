@@ -1,5 +1,5 @@
 <template>
-  <div class="panel panel-default">
+  <div class="panel" :class="panelClass">
     <PanelHeading :title="title" :icon-class="iconClass"/>
     <div class="panel-body">
       <slot/>
@@ -22,14 +22,20 @@ export default {
     iconClass: {
       type: String,
       default: ''
-    }
+    },
+    panelClass:{
+      type: String,
+      default: 'panel-default'
+    },
   }
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss">
   .panel{
     margin-bottom: 20px;
+  }
+  .panel-default{
     background-color: #fff;
     border: 1px solid #d8dce5;
     border-radius: 4px;

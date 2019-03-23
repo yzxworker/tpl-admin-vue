@@ -6,7 +6,7 @@ module.exports = {
       // 本地代理
       "proxyTable": {
         "/api": {
-          "target": "http://xxx.xxx.com",
+          "target": "http://xxx.xxx.com",// http://127.0.0.1:8000
           "pathRewrite": {
             "^/api": ""
           },

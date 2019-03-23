@@ -24,27 +24,28 @@ const default_config = {
     uploadUrl: '' // 上传地址
   }
 };
-// api 请求地址
-let API_BASE_URL
+// 开发环境cookie模拟
+let DEV_COOKIE_MOCK='';
+// 本地开发模拟api
+const IS_MOCK = process.env && process.env.MOCK_ENV=='open'?true:false;
+
 switch (process.env.APP_ENV) {
 
   case 'development':
-    INJECTION_CONFIG = Object.assign({}, default_config.dev)
-    API_BASE_URL = INJECTION_CONFIG.urlPrefix
-    break
+    INJECTION_CONFIG = Object.assign({}, default_config.dev);
+    break;
 
   case 'union':
     INJECTION_CONFIG = Object.assign({}, default_config.union, g_config)
-    break
+    break;
 
   case 'test':
     INJECTION_CONFIG = Object.assign({}, default_config.test, g_config)
-    break
+    break;
 
   case 'production':
     INJECTION_CONFIG = Object.assign({}, default_config.prod, g_config)
-    API_BASE_URL = INJECTION_CONFIG.urlPrefix
-    break
+    break;
 
   default:
     INJECTION_CONFIG = Object.assign({}, default_config.prod, g_config)
@@ -58,9 +59,14 @@ const UPLOAD_CONFIG = {
     systemFootNavImg: 'systemFootNavImg'
   }
 }
+// api 请求地址
+const API_BASE_URL = INJECTION_CONFIG.urlPrefix;
+
 console.log(`injection_config:`, INJECTION_CONFIG);
 console.log(process.env);
 export {
   API_BASE_URL,
-  UPLOAD_CONFIG
+  UPLOAD_CONFIG,
+  IS_MOCK,
+  DEV_COOKIE_MOCK
 }

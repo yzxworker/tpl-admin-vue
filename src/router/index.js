@@ -16,6 +16,7 @@ import loginPage from '../views/login'
 import err404Page from '../views/errorPage/404'
 import err401Page from '../views/errorPage/401'
 import errorLogPage from '../views/errorLog'
+import demoFormPage from '../views/demoForm'
 /**
  * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
  * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
@@ -66,6 +67,21 @@ export const constantRouterMap = [
     component:DemoPage,
     hidden: true
   },
+  // 常用表单页面演示
+  {
+    path: '/demoFormPage',
+    component: Layout,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'demoFormPage',
+        component: demoFormPage,
+        name: 'demoFormPage',
+        meta: { title: '表单演示', icon: 'bug' }
+      }
+    ]
+  },
+
   {
     path: '/login',
     component: loginPage,
