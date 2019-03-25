@@ -58,3 +58,19 @@
     border-bottom: $transparent-border-style;
   }
 }
+
+@mixin text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; // number of lines to show
+  overflow: hidden;
+  line-height: 1.3em;
+  max-height: 2.6em;
+}

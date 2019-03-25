@@ -46,7 +46,7 @@ export const constantRouterMap = [
   {
     path: '',
     component: Layout,
-    redirect: '/dashboard'
+    redirect: '/demoFormPage/demoFormPage'
   },
   // 带左侧导航面板
   {

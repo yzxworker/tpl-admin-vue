@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { Message } from 'element-ui' // MessageBox
 import Qs from 'qs'
+import { Message, Loading } from 'element-ui'
 import Cookies from 'js-cookie'
 // import store from '../../store'
 // import { getToken } from '@/common/utils/auth'

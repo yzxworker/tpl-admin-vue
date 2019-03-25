@@ -1,9 +1,13 @@
 /**
- * data 相关联的字段
+ * data 相关联的字段默认值
  */
 // 默认查询字段
 export const defaultFilterForm = {
-
+  userName:'',
+  userPhoneNumber:'',
+  createDate: '',
+  status:'',
+  submitting:false
 };
 // 分页查询条件
 export const defaultListQuery ={
@@ -12,5 +16,7 @@ export const defaultListQuery ={
 };
 // 默认弹窗字段
 export const defaultDialogForm = {
-
+  userName:'',
+  userPhoneNumber:'',
+  status:true,
 };
