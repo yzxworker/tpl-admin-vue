@@ -77,7 +77,7 @@ export const constantRouterMap = [
         path: 'demoFormPage',
         component: demoFormPage,
         name: 'demoFormPage',
-        meta: { title: '表单演示', icon: 'bug' }
+        meta: { title: '表单演示', icon: 'bug',affix: true }
       }
     ]
   },
